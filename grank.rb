@@ -11,7 +11,7 @@ if (ARGV.length < 2)
   exit   
 end
 search = URI.escape(ARGV[0])
-search_for_domain = "wolfehomeservices.com"
+search_for_domain = ARGV[1] 
 found = false
 page_num = 0
 max_pages = 20
