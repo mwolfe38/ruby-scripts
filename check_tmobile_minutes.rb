@@ -23,11 +23,19 @@ def get_usage_page(phone_number, password)
   newpage=a.submit(form)  
   a.get(usage_url)
 end
-
+def usage
+  puts "Usage: ruby #{__FILE__} {t-mobile-password}"
+end
 phone_number='8057096943'
-password = 'mattym38'
-usage_page = get_usage_page(phone_number,password)
-#usage_page = Nokogiri::HTML(File.open('usage.html', "r"))
+if (!ARGV[0])
+  usage()
+  exit
+end
+password = ARGV[0]
+
+
+#usage_page = get_usage_page(phone_number,password)
+usage_page = Nokogiri::HTML(File.open('usage.html', "r"))
 
 minutes = usage_page.search('/html/body/div[2]/div[2]/div/div[3]/div/div/div[2]/div/div[3]/div/h3/span/text()')
 if (minutes != nil && minutes[0] != nil && minutes[2] != nil)
